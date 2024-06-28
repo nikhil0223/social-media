@@ -8,7 +8,7 @@ export const isAuth = (req,res,next) =>{
     const token = authHeader.split(' ')[1];
     let decodedToken;
     try {
-        decodedToken= jwt.verify(token,'secret');
+        decodedToken= jwt.verify(token,process.env.JWT_TOKEN_KEY);
     } catch (error) {
         console.log(err);
         throw err;

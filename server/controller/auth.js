@@ -18,10 +18,10 @@ export const login = (req, res, next) => {
                     }
                     const payload = {
                         id: dbUser._id,
-                        username: dbUser.username,
+                        username: dbUser.userName,
                     }
                     const token = jwt.sign(
-                        payload, 'secret', { expiresIn: 86400 }
+                        payload, process.env.JWT_TOKEN_KEY, { expiresIn: 86400 }
                     );
                     console.log("Logged in ")
                     res.json({ message: "success" ,token: token , info:dbUser});

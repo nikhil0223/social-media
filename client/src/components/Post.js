@@ -16,7 +16,7 @@ const Post = ({info,jwtToken}) => {
   const deleteHandler = async ()=>{
     const postId = info._id;
     try{
-      const response = await fetch('http://localhost:5000/post/'+postId,{
+      const response = await fetch('https://social-media-three-iota.vercel.app/post/'+postId,{
         method: 'DELETE',
         headers: {
           Authorization : 'Bearer ' + jwtToken,

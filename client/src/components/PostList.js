@@ -16,7 +16,7 @@ const PostList = () => {
 
   const fetchPosts = async () => {
     try {
-      const response = await fetch('http://localhost:5000/posts', {
+      const response = await fetch('https://social-media-three-iota.vercel.app/posts', {
         method: 'GET',
         headers: {
           Authorization: 'Bearer ' + jwtToken

@@ -34,7 +34,7 @@ const CreatePost = ({creator}) => {
     // console.log(user.creator);
     formRef.current.reset();
     try{
-      const response = await fetch('http://localhost:5000/post',{
+      const response = await fetch('https://social-media-three-iota.vercel.app/post',{
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

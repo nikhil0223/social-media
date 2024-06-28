@@ -20,7 +20,7 @@ const Login = () => {
         }
         // console.log(user);
         try{
-            const response = await fetch('http://localhost:5000/auth/login',{
+            const response = await fetch('https://social-media-three-iota.vercel.app/auth/login',{
                 method:'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -54,7 +54,7 @@ const Login = () => {
             password: form[2].value
         }
         try{
-            const response = await fetch('http://localhost:5000/auth/signup',{
+            const response = await fetch('https://social-media-three-iota.vercel.app/auth/signup',{
                 method:'POST',
                 headers: {
                     'Content-Type': 'application/json',

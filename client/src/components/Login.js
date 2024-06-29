@@ -97,8 +97,8 @@ const Login = () => {
                         className='m-8 w-full bg-blue-300 rounded-xl'>
                         <h1 className='m-2 p-3 text-3xl text-white text-center'>Welcome Back</h1>
                         {!isSignedInForm && (<input className='m-3 p-3 w-11/12 rounded-lg' type='text' placeholder='Full-Name' required/>)}
-                        <input ref={email} className='m-3 p-3 w-11/12 rounded-lg' type='email' placeholder='Email-Address' />
-                        <input ref={password} className='m-3 p-3  w-11/12 rounded-lg' type='password' placeholder='Password' />
+                        <input ref={email} className='m-3 p-3 w-11/12 rounded-lg' type='email' placeholder='Email-Address' required/>
+                        <input ref={password} className='m-3 p-3  w-11/12 rounded-lg' type='password' placeholder='Password' required/>
                         <button className='m-3 p-3 w-11/12 rounded-lg text-white bg-blue-600 hover:text-blue-600 hover:bg-sky-200' type='submit' >{isSignedInForm? "Login":"SignUp"}</button>
                         <p className='m-3  text-red-500'>{err}</p>
                         <p className='m-3 text-sm text-white' onClick={() => setIsSignedInForm(!isSignedInForm)}>{isSignedInForm ? "Don't have an Account? Sign up": "Already have an Account? Login"}</p>

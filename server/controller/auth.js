@@ -23,8 +23,7 @@ export const login = (req, res, next) => {
                     const token = jwt.sign(
                         payload, process.env.JWT_TOKEN_KEY, { expiresIn: 86400 }
                     );
-                    console.log("Logged in ")
-                    res.json({ message: "success" ,token: token , info:dbUser});
+                    res.status(200).json({ message: "success" ,token: token , info:dbUser});
                 })
                 .catch();
         })

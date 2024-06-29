@@ -1,18 +1,28 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { setUserInfo } from '../Redux/userSlice';
+import { checkValidData } from '../Utils/validator';
 
 const Login = () => {
 
     const [isSignedInForm, setIsSignedInForm] = useState(true);
+    const [err,setErr] =useState(null);
 
+    const email = useRef();
+    const password = useRef();
+
+    
     const navigate = useNavigate();
     const dispatch = useDispatch();
     localStorage.clear();
-
+    
     const handleLogin =async (e) => {
+        setErr(null);
         e.preventDefault();
+        const message = checkValidData(email.current.value,password.current.value);
+        setErr(message);
+        if(message!=null){ return;}
         const form = e.target;
         const user = {
             email: form[0].value,
@@ -28,8 +38,10 @@ const Login = () => {
                 body:JSON.stringify(user),
             });
             const data = await response.json();
-            
-        
+            if(data.status!==200){
+                setErr(data.message);
+            }
+            console.log(err);
             // localStorage.jwtToken=data.token;
             // dispatch(setToken(localStorage.jwtToken));
             dispatch(setUserInfo({email:data.info.email,name:data.info.userName}));
@@ -46,7 +58,10 @@ const Login = () => {
     };
 
     const handleSignup =async (e) => {
+        setErr(null);
         e.preventDefault();
+        const message = checkValidData(email.current.value,password.current.value);
+        setErr(message);
         const form = e.target;
         const user = {
             username: form[0].value,
@@ -81,10 +96,11 @@ const Login = () => {
                     <form onSubmit={isSignedInForm?handleLogin:handleSignup}
                         className='m-8 w-full bg-blue-300 rounded-xl'>
                         <h1 className='m-2 p-3 text-3xl text-white text-center'>Welcome Back</h1>
-                        {!isSignedInForm && (<input className='m-3 p-3 w-11/12 rounded-lg' type='text' placeholder='Full-Name' />)}
-                        <input className='m-3 p-3 w-11/12 rounded-lg' type='email' placeholder='Email-Address' />
-                        <input className='m-3 p-3  w-11/12 rounded-lg' type='password' placeholder='Password' />
+                        {!isSignedInForm && (<input className='m-3 p-3 w-11/12 rounded-lg' type='text' placeholder='Full-Name' required/>)}
+                        <input ref={email} className='m-3 p-3 w-11/12 rounded-lg' type='email' placeholder='Email-Address' />
+                        <input ref={password} className='m-3 p-3  w-11/12 rounded-lg' type='password' placeholder='Password' />
                         <button className='m-3 p-3 w-11/12 rounded-lg text-white bg-blue-600 hover:text-blue-600 hover:bg-sky-200' type='submit' >{isSignedInForm? "Login":"SignUp"}</button>
+                        <p className='m-3  text-red-500'>{err}</p>
                         <p className='m-3 text-sm text-white' onClick={() => setIsSignedInForm(!isSignedInForm)}>{isSignedInForm ? "Don't have an Account? Sign up": "Already have an Account? Login"}</p>
                     </form>
                 </div>

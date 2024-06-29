@@ -57,11 +57,11 @@ const CreatePost = ({creator}) => {
       <form ref={formRef} onSubmit={createPostHandler} >
         <h1 className='p-1 text-center text-2xl'>Create Post</h1>
         <input ref={title} className='mt-8 w-full h-8 rounded-lg p-4'
-          type="text " placeholder='title' />
+          type="text " placeholder='title' required/>
         <input ref={tags} className='mt-8 w-full h-8 rounded-lg p-4'
-          type="text" placeholder='tags' />
+          type="text" placeholder='tags' required/>
         <textarea ref={textarea} className='mt-8 w-full h-32 rounded-lg pt-2 p-4'
-          type="text" placeholder='description' />
+          type="text" placeholder='description' required/>
         <input ref={file} className='mt-8 w-full h-12 rounded-2xl p-1'
           type="file" placeholder='choose file' />
         <button className='mt-2 w-full h-10 rounded-lg px-4 bg-indigo-400 text-white hover:text-blue-300 hover:bg-white'>SUBMIT</button>

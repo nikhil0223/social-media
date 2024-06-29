@@ -15,9 +15,9 @@ const ProfilePage = () => {
     const { posts } = useContext(PostContext);
     const [postCount, setPostCount] = useState(0);
     const count = () => {
-        const matchingCreator = posts.find((all) => all.creator._id === data._id);
+        const matchingCreator = posts.find((all) => all.creator?._id === data?._id);
         if (matchingCreator) {
-            return matchingCreator.creator.posts?.length || 0;
+            return matchingCreator?.creator?.posts?.length || 0;
         }
         return 0;
     }

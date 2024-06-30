@@ -30,7 +30,7 @@ const appRouter = createBrowserRouter([
                 element: <ProfilePage />
             },
             {
-                path: "/view",
+                path: "/view/:id",
                 element: <ViewPage />
             }
         ]

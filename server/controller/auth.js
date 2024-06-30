@@ -33,7 +33,6 @@ export const login = (req, res, next) => {
 
 export const signup = async (req, res, next) => {
     const user = req.body;
-    console.log(user);
     const takenUserName = await User.findOne({ userName: user.username });
     const takenEmail = await User.findOne({ email: user.email });
 

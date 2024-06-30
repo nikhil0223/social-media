@@ -12,17 +12,15 @@ export const getPosts = async (req, res, next) => {
 };
 
 export const createPost = async (req, res, next) => {
-    const {title,description,selectedFile,tags,creator}=req.body;
-    // const imageUrl=selectedFile.path.replace("\\","/");
-    // console.log(imageUrl);
+    const {title,description,tags,creator}=req.body;
+    const imageUrl = req.file.path.replace("\\","/");
     const post = {
         title: title,
         description: description,
-        selectedFile: selectedFile,
+        selectedFile:imageUrl,
         tags: tags,
         creator: creator
     }
-    console.log(post);
     const newPost = new PostMessage(post);
     try {
         await newPost.save();
@@ -37,10 +35,7 @@ export const createPost = async (req, res, next) => {
 }
 
 export const deletePost = async (req, res, next) => {
-
-    console.log(req.body);
     const postId = req.params._id;
-    console.log(postId);
     try {
         const post = await PostMessage.findById(postId);
         if (!post) {
@@ -63,7 +58,16 @@ export const deletePost = async (req, res, next) => {
     }
 };
 
-const updatePost = (req,res,next) => {
+export const getPost = async (req,res,next) => {
     const postId = req.params._id;
-    
+    try{
+        const post = await PostMessage.findById(postId);
+        if (!post) {
+            throw new Error('post doesnot exist');
+        }
+        res.status(200).json({post:post,message: "Post Fetched"});
+    }
+    catch(err){
+        res.status(409).json({ message: err.message });
+    }
 };

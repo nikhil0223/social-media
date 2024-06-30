@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import PostList from './PostList';
 import Profile from './Profile';
 import CreatePost from './CreatePost';
@@ -14,7 +14,7 @@ const Home = () => {
     const data = JSON.parse(sessionStorage.getItem('data'));
     const {posts} = useContext(PostContext);
     dispatch(toggleUser(false));
-    // console.log(data);
+    
     return (
         <div className='mt-2'>
             <div className='grid grid-cols-10'>

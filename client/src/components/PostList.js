@@ -1,18 +1,12 @@
-import React, { useCallback, useContext, useEffect, useState } from 'react'
+import React, {  useContext, useEffect } from 'react'
 import Post from './Post';
 import PostContext from '../Utils/PostContext';
-import { useDispatch } from 'react-redux';
 
 
 const PostList = () => {
 
-  // const [posts,setPosts] = useState([]);
-
-  const dispatch = useDispatch();
   const jwtToken = localStorage.jwtToken;
-  // const posts = useSelector(store => store.posts);
   const {posts,setPosts} = useContext(PostContext);
-  // const postList = posts.posts;
 
   const fetchPosts = async () => {
     try {

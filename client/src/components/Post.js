@@ -1,17 +1,14 @@
-import { useContext, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { Link } from "react-router-dom";
 import PostContext from "../Utils/PostContext";
 import { useSelector } from "react-redux";
 
 const Post = ({info,jwtToken}) => {
 
-  const navigate = useNavigate();
   const data = JSON.parse(sessionStorage.getItem('data'));
   const {setPosts} = useContext(PostContext);
   const deleteBtn = useSelector(store=>store.user.profilePage);
 
-  const viewHandler = ()=>{};
-  console.log(info);
 
   const deleteHandler = async ()=>{
     const postId = info._id;
@@ -25,8 +22,6 @@ const Post = ({info,jwtToken}) => {
       const data = await response.json();
       setPosts([]);
       window.location.reload();
-      // navigate('/');
-      // navigate('/profile');
       console.log(data);
     }catch(err){
       console.log(err);
@@ -41,7 +36,7 @@ const Post = ({info,jwtToken}) => {
       <div className='px-4 flex justify-between'>
         <p className='mt-8 mb-4'>{info?.tags}</p>
         <div className='mt-8 mb-4 ml-full text-lg'>
-          <Link to='/view' >
+          <Link to={'/view/'+ info._id} >
             <button 
             className='mx-2 bg-indigo-400 text-white  hover:bg-blue-300 rounded-lg w-14'>View</button>
           </Link>

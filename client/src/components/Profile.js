@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { toggleUser } from '../Redux/userSlice';
 
 const Profile = ({ info, allinfo }) => {
 
-    // const deleteBtn = useSelector(store=>store.user.profilePage);
     const dispatch=useDispatch();
     const [postCount, setPostCount] = useState(0);
     const count = () => {

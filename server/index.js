@@ -14,11 +14,7 @@ import 'dotenv/config';
 const app = express();
 
 
-
-app.use(bodyParser.json({ extended: true }));
-app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+// app.use(cors());
 
 const storage= multer.diskStorage({
     destination: (req, file, cb) => {
@@ -37,6 +33,12 @@ const fileFilter= (req,file,cb)=>{
     }
 };
 
+app.use(bodyParser.json({ extended: true }));
+app.use(bodyParser.urlencoded({  extended: true }));
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+app.use('/images' , express.static(path.join(__dirname,'images')));
+app.use(multer({storage:storage,fileFilter:fileFilter}).single('selectedFile'));
 
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -49,9 +51,7 @@ app.use((req, res, next) => {
 });
 app.use(postRoutes);
 app.use(authRoutes);
-app.use(multer({storage:storage,fileFilter:fileFilter}).single('file'));
 
-app.use('/images' , express.static(path.join(__dirname,'images')));
 
 
 const PORT = process.env.PORT || 5000;

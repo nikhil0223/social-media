@@ -28,7 +28,6 @@ const Login = () => {
             email: form[0].value,
             password: form[1].value
         }
-        // console.log(user);
         try{
             const response = await fetch('https://social-media-three-iota.vercel.app/auth/login',{
                 method:'POST',
@@ -41,11 +40,8 @@ const Login = () => {
             if(data.status!==200){
                 setErr(data.message);
             }
-            console.log(err);
-            // localStorage.jwtToken=data.token;
-            // dispatch(setToken(localStorage.jwtToken));
+            
             dispatch(setUserInfo({email:data.info.email,name:data.info.userName}));
-            // navigate('/');
             if (data.token) {
                 sessionStorage.setItem('data',JSON.stringify(data.info));
                 localStorage.setItem('jwtToken', data.token);
@@ -77,7 +73,6 @@ const Login = () => {
                 body:JSON.stringify(user),
             });
             const data = await response.json();
-            console.log(data);
             navigate('/');
         }
         catch(err){

@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import Post from './Post';
-import { useNavigate } from 'react-router-dom';
 
 
 const ProfilePostList = (datas) => {
 
     const jwtToken = localStorage.jwtToken;
     const [userPost, setUserPost] = useState([]);
-    const navigate =useNavigate();
     
 
     const fetchPosts = async () => {
@@ -19,11 +17,9 @@ const ProfilePostList = (datas) => {
                 }
             });
             const data = await response.json();
-            console.log(data);
             const filteredPost = data.filter((post) =>
                 post.creator._id === datas.data._id
             );
-            console.log(filteredPost);
             setUserPost(filteredPost);
         }
         catch (err) {

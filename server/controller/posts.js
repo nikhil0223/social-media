@@ -13,11 +13,11 @@ export const getPosts = async (req, res, next) => {
 
 export const createPost = async (req, res, next) => {
     const {title,description,tags,creator}=req.body;
-    const imageUrl = req.file.path.replace("\\","/");
+    // const imageUrl = req.file.path.replace("\\","/");
     const post = {
         title: title,
         description: description,
-        selectedFile:imageUrl,
+        // selectedFile:req.body.selectedFile,
         tags: tags,
         creator: creator
     }

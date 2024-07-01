@@ -1,9 +1,7 @@
-import React from 'react'
+import React from 'react';
 
 const ViewShimmer = () => {
-  return (
-    <div>ViewShimmer</div>
-  )
-}
+  return <div>ViewShimmer</div>;
+};
 
 export default ViewShimmer;

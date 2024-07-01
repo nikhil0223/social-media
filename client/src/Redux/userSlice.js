@@ -1,27 +1,21 @@
-import { createSlice } from "@reduxjs/toolkit";
-
+import { createSlice } from '@reduxjs/toolkit';
 
 const userSlice = createSlice({
-    name: "user",
-    initialState: {
-        jwtToken: null,
-        userInfo:{
-        },
-        profilePage: false,
+  name: 'user',
+  initialState: {
+    jwtToken: null,
+    profilePage: false,
+  },
+  reducers: {
+    setToken: (state, action) => {
+      state.jwtToken = action.payload;
     },
-    reducers: {
-        setToken : (state,action)=>{
-            state.jwtToken = action.payload;
-        },
-        setUserInfo : (state,action)=>{
-            state.userInfo = action.payload;
-        },
-        toggleUser : (state,action)=> {
-            state.profilePage = action.payload;
-        }
-    }
+    toggleUser: (state, action) => {
+      state.profilePage = action.payload;
+    },
+  },
 });
 
-export const {setToken,setUserInfo,toggleUser} = userSlice.actions;
+export const { setToken,toggleUser } = userSlice.actions;
 
 export default userSlice.reducer;

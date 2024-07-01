@@ -1,12 +1,10 @@
-import { configureStore } from "@reduxjs/toolkit";
-import postReducer from "../Redux/postSlice";
-import userReducer from "../Redux/userSlice";
+import { configureStore } from '@reduxjs/toolkit';
+import userReducer from '../Redux/userSlice';
 
 const appStore = configureStore({
-    reducer:{
-        user: userReducer,
-        posts: postReducer,
-    }
+  reducer: {
+    user: userReducer,
+  },
 });
 
 export default appStore;

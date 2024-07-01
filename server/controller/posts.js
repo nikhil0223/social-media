@@ -17,7 +17,7 @@ export const createPost = async (req, res, next) => {
     const post = {
         title: title,
         description: description,
-        // selectedFile:req.body.selectedFile,
+        selectedFile:'imageUrl',
         tags: tags,
         creator: creator
     }

@@ -14,7 +14,7 @@ import 'dotenv/config';
 const app = express();
 
 
-// app.use(cors());
+ app.use(cors());
 
 const storage= multer.diskStorage({
     destination: (req, file, cb) => {
@@ -41,7 +41,7 @@ app.use('/images' , express.static(path.join(__dirname,'images')));
 app.use(multer({storage:storage,fileFilter:fileFilter}).single('selectedFile'));
 
 app.use((req, res, next) => {
-    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Origin', 'https://social-media-eiiu.vercel.app');
     res.setHeader(
       'Access-Control-Allow-Methods',
       'OPTIONS, GET, POST, PUT, PATCH, DELETE'

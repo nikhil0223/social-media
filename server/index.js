@@ -33,9 +33,9 @@ const fileFilter= (req,file,cb)=>{
 app.use(bodyParser.json({ extended: true }));
 app.use(bodyParser.urlencoded({  extended: true }));
 const __filename = fileURLToPath(import.meta.url);
-// const __dirname = path.dirname(__filename);
-// app.use('/images' , express.static(path.join(__dirname,'images')));
-// app.use(multer({storage:storage,fileFilter:fileFilter}).single('selectedFile'));
+const __dirname = path.dirname(__filename);
+app.use('/images' , express.static(path.join(__dirname,'images')));
+app.use(multer({storage:storage,fileFilter:fileFilter}).single('selectedFile'));
 
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');

@@ -13,11 +13,12 @@ export const getPosts = async (req, res, next) => {
 
 export const createPost = async (req, res, next) => {
     const {title,description,tags,creator}=req.body;
-    const imageUrl = req.file.path.replace("\\","/");
+    // const imageUrl = req.file.path.replace("\\","/");
+    // console.log(imageUrl);
     const post = {
         title: title,
         description: description,
-        selectedFile:imageUrl,
+        selectedFile:'imageUrl',
         tags: tags,
         creator: creator
     }
@@ -32,7 +33,7 @@ export const createPost = async (req, res, next) => {
     catch (error) {
         res.status(409).json({ message: error.message });
     }
-}
+};
 
 export const deletePost = async (req, res, next) => {
     const postId = req.params._id;

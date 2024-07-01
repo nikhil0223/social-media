@@ -37,7 +37,6 @@ const CreatePost = ({ creator,onSubmit }) => {
       });
       const data = await response.json();
       setPosts([...posts, data.post]);
-      onSubmit();
     } catch (err) {
       console.log(err);
     }

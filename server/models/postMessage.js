@@ -20,7 +20,7 @@ const postSchema =new Schema({
     },
     selectedFile: {
         type: String,
-        // required: true 
+        // required: true
     },
     createdAt: {
         type: Date,

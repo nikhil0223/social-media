@@ -1,7 +1,7 @@
 import { createContext } from 'react';
 
 const PostContext = createContext({
-  posts: [],
+  posts: null,
 });
 
 export default PostContext;

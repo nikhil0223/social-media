@@ -1,9 +1,11 @@
 import React, { useContext, useRef } from 'react';
 import PostContext from '../Utils/PostContext';
+import { useNavigate } from 'react-router-dom';
 
 const CreatePost = ({ creator,onSubmit }) => {
   const formRef = useRef(null);
   const { posts, setPosts } = useContext(PostContext);
+  const navigate = useNavigate();
 
   const jwtToken = localStorage.jwtToken;
 
@@ -23,8 +25,8 @@ const CreatePost = ({ creator,onSubmit }) => {
     formData.append('title', form.title.value);
     formData.append('tags', form.tags.value);
     formData.append('description', form.description.value);
-    formData.append('selectedFile', form.file.files[0]);
-    formData.append('creator', creator);
+    // formData.append('selectedFile', form.selectedFile.files[0]);
+    formData.append('creator',creator);
     formRef.current.reset();
     try {
       const response = await fetch('https://social-media-three-iota.vercel.app/post', {
@@ -36,10 +38,11 @@ const CreatePost = ({ creator,onSubmit }) => {
         body: formData,
       });
       const data = await response.json();
-      // window.location.reload();
-      // navigate('/profile');
+
       setPosts([...posts, data.post]);
-      onSubmit();
+      if(window.innerWidth <= 768){
+        onSubmit();
+      }
     } catch (err) {
       console.log(err);
     }
@@ -71,7 +74,7 @@ const CreatePost = ({ creator,onSubmit }) => {
           required
         />
         <input
-          name="file"
+          name="selectedFile"
           className="max-w-md p-2 text-sm md:mt-8  md:h-12 rounded-2xl md:p-2 border-2 border-solid border-blue-300"
           type="file"
           placeholder="file"

@@ -14,7 +14,10 @@ const ProfilePage = () => {
   const { posts } = useContext(PostContext);
   const [postCount, setPostCount] = useState(0);
   const count = () => {
-    const matchingCreator = posts.find((all) => all.creator?._id === data?._id);
+    if(posts!==null){
+      return;
+    }
+    const matchingCreator = posts?.find((all) => all.creator?._id === data?._id);
     if (matchingCreator) {
       return matchingCreator?.creator?.posts?.length || 0;
     }
@@ -23,7 +26,7 @@ const ProfilePage = () => {
 
   useEffect(() => {
     setPostCount(count());
-  }, [posts, data]);
+  }, [posts]);
 
   return (
     <div className="mt-12 md:ml-20 grid md:grid-cols-12">

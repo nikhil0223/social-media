@@ -30,7 +30,7 @@ const ViewPage = () => {
   useEffect(() => {
     fetchPost();
   }, []);
-
+  const imageUrl = "https://social-media-three-iota.vercel.app/"+ post?.selectedFile;
   return (
     <div className="">
       {post ? (
@@ -39,7 +39,7 @@ const ViewPage = () => {
             <img
               className="object-cover w-full h-full md:h-screen md:rounded-l-3xl rounded-t-lg"
               alt="img"
-              src={"http://social-media-three-iota.vercel.app/" + post?.selectedFile}
+              src={imageUrl}
             />
           </div>
           <div className="col-span-4 md:bg-indigo-300 rounded-r-3xl shadow-xl md:text-white text-black">

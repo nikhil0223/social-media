@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 
 const Post = ({ info, jwtToken }) => {
   const data = JSON.parse(sessionStorage.getItem('data'));
-  const { setPosts } = useContext(PostContext);
+  const { posts,setPosts } = useContext(PostContext);
   const deleteBtn = useSelector((store) => store.user.profilePage);
 
   const deleteHandler = async () => {
@@ -18,7 +18,11 @@ const Post = ({ info, jwtToken }) => {
         },
       });
       const data = await response.json();
-      setPosts([]);
+      const index = posts?.findIndex(item => item?._id === info?._id);
+      if (index !== -1) {
+        posts.splice(index, 1);
+      }
+      setPosts([...posts]);
       window.location.reload();
       console.log(data);
     } catch (err) {
@@ -28,12 +32,12 @@ const Post = ({ info, jwtToken }) => {
 
   return (
     <div className="m-4 p-2 border-4 border-solid border-blue-300 rounded-lg">
-      <p className="text-sm align-top text-gray-600 px-4 ">{`Posted by ${data._id === info.creator ? data.userName : info?.creator?.userName} on date : ${info?.createdAt?.substr('', 10)}`}</p>
+      <p className="text-sm align-top text-gray-600 px-4 ">{`Posted by ${data?._id === info?.creator ? data?.userName : info?.creator?.userName} on date : ${info?.createdAt?.substr('', 10)}`}</p>
       <h1 className="px-4  mt-2 text-3xl">{info?.title}</h1>
       <div className="px-4 flex justify-between">
         <p className="mt-8 mb-4">{info?.tags}</p>
         <div className="mt-8 mb-4 ml-full text-lg">
-          <Link to={'/view/' + info._id}>
+          <Link to={'/view/' + info?._id}>
             <button className="mx-2 bg-indigo-400 text-white  hover:bg-blue-300 rounded-lg w-14">
               View
             </button>

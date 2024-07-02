@@ -7,7 +7,7 @@ const Profile = ({ info, allinfo }) => {
   const dispatch = useDispatch();
   const [postCount, setPostCount] = useState(0);
   const count = () => {
-    const matchingCreator = allinfo.find(
+    const matchingCreator = allinfo?.find(
       (all) => all?.creator?._id === info._id
     );
     if (matchingCreator) {

@@ -23,7 +23,7 @@ export const createPost = async (req, res, next) => {
         description: description,
         tags: tags,
         selectedFile: "imageUrl",
-        creator: req.id
+        creator: req.body.creator,
     });
     const newPost = new PostMessage(post);
     try {

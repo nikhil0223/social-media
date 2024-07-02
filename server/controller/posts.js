@@ -12,15 +12,19 @@ export const getPosts = async (req, res, next) => {
 };
 
 export const createPost = async (req, res, next) => {
-    const {title,description,tags,creator}=req.body;
-    // const imageUrl = req.file.path.replace("\\","/");
-    const post = {
+    const title = req.body.title;
+    const description = req.body.description;
+    const tags = req.body.tags;
+    const creator = req.body.creator;
+    const imageUrl = req.file.path.replace("\\", "/");
+    console.log(req.id);
+    const post = new PostMessage({
         title: title,
         description: description,
-        selectedFile:'imageUrl',
         tags: tags,
-        creator: creator
-    }
+        selectedFile: imageUrl,
+        creator: req.id
+    });
     const newPost = new PostMessage(post);
     try {
         await newPost.save();

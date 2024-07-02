@@ -16,13 +16,13 @@ export const createPost = async (req, res, next) => {
     const description = req.body.description;
     const tags = req.body.tags;
     const creator = req.body.creator;
-    const imageUrl = req.file.path.replace("\\", "/");
-    console.log(req.id);
+    // const imageUrl = req.file.path.replace("\\", "/");
+    // console.log(req.id);
     const post = new PostMessage({
         title: title,
         description: description,
         tags: tags,
-        selectedFile: imageUrl,
+        selectedFile: "imageUrl",
         creator: req.id
     });
     const newPost = new PostMessage(post);

@@ -30,7 +30,7 @@ const ViewPage = () => {
   useEffect(() => {
     fetchPost();
   }, []);
-  const imageUrl = "https://social-media-three-iota.vercel.app/"+ post?.selectedFile;
+  const imageUrl = "https://social-media-three-iota.vercel.app"+ post?.selectedFile;
   return (
     <div className="">
       {post ? (
